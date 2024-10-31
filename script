@@ -1,0 +1,49 @@
+kubectl exec -it deploy/client -- curl http://ollama.ollama:80/api/generate -d '{"model": "llama3.2", "prompt":"what are the top 1 favorite place in Salt Lake City?", "stream": false}'
+
+
+
+for i in {2..10009}
+do
+  kubectl exec -it deploy/client -- curl http://ollama.ollama:80/api/tags
+  sleep 5
+done
+
+for i in {2..10009}
+do
+  kubectl exec -it deploy/client -- curl http://ollama.ollama:80/api/generate -d '{"model": "llama3.2", "prompt":"what are the top 1 favorite place in Salt Lake City?", "stream": false}'
+done
+
+kubectl port-forward -n ollama service/ollama 11434:80
+kubectl port-forward service/demo 8501:8501
+
+ollama pull llama3.2
+ollama pull llava
+
+curl http://localhost:11434/api/generate -d '{
+  "model": "llama3.2",
+  "prompt": "what are the top 2 favorite places in Salt Lake City?",
+  "stream": false
+}'
+
+kubectl exec -it deploy/client -- curl http://ollama.ollama:80/api/pull -d '{"name": "llama3.2"}'
+kubectl exec -it deploy/client -- curl http://ollama.ollama:80/api/pull -d '{"name": "llava"}'
+
+
+
+curl http://localhost:11434/api/chat -d '{
+  "model": "llama3.2",
+  "messages": [
+    {"role": "user", "content": "what are top 2 favorite places in Salt Lake City?"}
+  ],
+  "stream": false
+}'
+
+kubectl exec -it deploy/client -- curl http://ollama.ollama:80/api/chat -d '{"model": "llama3.2", "messages": [{"role": "user", "content": "what are top 2 favorite places in Salt Lake City?"}], "stream": false}'
+
+curl http://localhost:11434/api/chat -d '{
+  "model": "llama3.2", 
+  "messages": [
+    {"role": "user", "content": "what are top 2 favorite places in Salt Lake City?"}
+  ], 
+  "stream": true
+}'
