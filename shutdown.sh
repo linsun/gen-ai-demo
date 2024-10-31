@@ -22,4 +22,4 @@ else
 fi
 
 echo "Delete the kind cluster to clean up our machine..."
-kind delete cluster -n llm
+kind delete cluster -n gen-al-demo

@@ -6,23 +6,6 @@ Gen AL Demo with Istio Ambient
 - A Kubernetes cluster, for example a [kind](https://kind.sigs.k8s.io/) cluster.
 - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 
-Pull the LLaVa model by running
-
-With Ollama installed on your machine, you will need to pull the LLaVa model by running
-
-```sh
-ollama pull llava
-```
-
-You can verify that the model is installed by running
-
-```sh
-ollama list
-
-NAME            ID           SIZE   MODIFIED
-llava:latest    8dd30f6b0cb1 4.7 GB 17 seconds ago 
-```
-
 ## Startup
 
 We have crafted a few scripts to make this demo run as quickly as possible on your machine once you've installed the prerequisites.
@@ -37,20 +20,20 @@ This script will:
 ./startup.sh
 ```
 
-## Load the LLM models used in the demo
+## Pull the LLM models
 
 The following two LLM models are used in the demo:
 - LLaVa (Large Language and Vision Assistant)
 - Llama (Large Language Model Meta AI) 3.2
 
-Load the two models:
+Pull the two models:
 
 ```sh
 kubectl exec -it deploy/client -- curl http://ollama.ollama:80/api/pull -d '{"name": "llama3.2"}'
 kubectl exec -it deploy/client -- curl http://ollama.ollama:80/api/pull -d '{"name": "llava"}'
 ```
 
-## Install Istio and Enroll your apps to Istio ambient
+## Install Istio ambient and enroll all the apps to Istio ambient
 
 We use [Istio](https://istio.io) to secure, observe and control the traffic among the microservices in the cluster.
 
@@ -68,14 +51,9 @@ kubectl port-forward svc/demo 8001:8001
 
 To access the demo app, open your browser and navigate to [http://localhost:8001](http://localhost:8001)
 
-## Shutdown
+## Cleanup
 
-To shut down the demo, run the following command, which will:
-
-- Remove the Kubernetes manifests
-- Remove the port-forwarding
-- Delete the kind cluster
-
+To clean up the demo, run the following command:
 ```sh
 ./shutdown.sh
 ```
