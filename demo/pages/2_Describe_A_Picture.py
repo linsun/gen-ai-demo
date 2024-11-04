@@ -4,7 +4,6 @@ import streamlit as st
 from ollama import Client
 
 ollama_base_url = os.getenv("OLLAMA_BASE_URL")
-llm_name = os.getenv("LLM")
 
 def process_stream(stream):
   for chunk in stream:
