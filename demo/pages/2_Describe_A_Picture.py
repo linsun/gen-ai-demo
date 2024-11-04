@@ -13,8 +13,8 @@ def process_stream(stream):
 # Streamlit UI
 
 st.set_page_config(
-    page_title="Describe a Picture with LLaVa",
-    page_icon="👋",
+    page_title="Describe a Picture with LLaVa 🖼",
+    page_icon="🖼",
 )
 
 styl = f"""
@@ -28,7 +28,7 @@ styl = f"""
 """
 st.markdown(styl, unsafe_allow_html=True)
 
-st.title(':grey[Describe a picture with LLaVa ]')
+st.title(':grey[Describe a picture with LLaVa 🖼 ]')
 picture = st.file_uploader('Upload a PNG image', type='png')
 
 if picture:

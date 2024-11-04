@@ -42,4 +42,8 @@ spec:
           env:
             - name: OLLAMA_BASE_URL
               value: "http://ollama.ollama:80"
-
+            - name: SECRET_OPENAI
+              valueFrom:
+                secretKeyRef:
+                  name: openai
+                  key: key

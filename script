@@ -47,3 +47,8 @@ curl http://localhost:11434/api/chat -d '{
   ], 
   "stream": true
 }'
+
+for i in {2..10009}
+do
+  k exec -it deploy/client -- curl http://httpbin.org/get -v
+done

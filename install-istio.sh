@@ -14,6 +14,11 @@ kubectl apply -f $ISTIO_DOWNLOAD_DIR/samples/addons/prometheus.yaml
 kubectl apply -f $ISTIO_DOWNLOAD_DIR/samples/addons/kiali.yaml
 kubectl apply -f $ISTIO_DOWNLOAD_DIR/samples/addons/grafana.yaml
 
+kubectl create ns istio-egress
+kubectl label ns istio-egress istio.io/dataplane-mode=ambient
+istioctl waypoint apply --enroll-namespace --namespace istio-egress
 
 kubectl label ns default istio.io/dataplane-mode=ambient
 kubectl label ns ollama istio.io/dataplane-mode=ambient
+
+
