@@ -3,5 +3,5 @@ apiVersion: kind.x-k8s.io/v1alpha4
 name: gen-al-demo
 nodes:
   - role: control-plane
-  - role: worker1
-  - role: worker2
+  - role: worker
+  - role: worker
