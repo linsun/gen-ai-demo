@@ -1,0 +1,21 @@
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: openai
+  namespace: istio-egress
+spec:
+  targetRefs:
+  - kind: ServiceEntry
+    group: networking.istio.io
+    name: api.openai.com
+  action: ALLOW
+  rules:
+  # Our admin application can access anything
+  - from:
+    - source:
+        principals: ["cluster.local/ns/default/sa/client"]
+  # Everything else is only allowed to access /POST
+  - to:
+    - operation:
+        methods: ["POST"]
+        paths: ["/"]
