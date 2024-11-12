@@ -36,7 +36,7 @@ spec:
       containers:
         - name: demo
           image: docker.io/linsun/demo:latest
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8001
           env:

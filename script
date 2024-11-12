@@ -25,9 +25,12 @@ curl http://localhost:11434/api/generate -d '{
   "stream": false
 }'
 
+# pull models
 kubectl exec -it deploy/client -- curl http://ollama.ollama:80/api/pull -d '{"name": "llama3.2"}'
 kubectl exec -it deploy/client -- curl http://ollama.ollama:80/api/pull -d '{"name": "llava"}'
 
+# list models
+kubectl exec -it deploy/client -- curl http://ollama.ollama:80/api/tags
 
 
 curl http://localhost:11434/api/chat -d '{

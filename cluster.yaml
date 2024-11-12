@@ -1,7 +1,5 @@
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
-name: gen-al-demo
+name: kind
 nodes:
   - role: control-plane
-  - role: worker
-  - role: worker
