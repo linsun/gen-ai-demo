@@ -1,5 +1,5 @@
 # gen-al-demo
-Gen AL Demo with Istio Ambient
+Gen AL Demo with Kubernetes, Istio Ambient, Prometheus, Kiali etc
 
 ## Prerequisites
 
