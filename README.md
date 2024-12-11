@@ -55,12 +55,13 @@ To access the demo app, open your browser and navigate to [http://localhost:8001
 
 To clean up the demo, run the following command:
 ```sh
+./cleanup-istio.sh
 ./shutdown.sh
 ```
 
 ## Operating System Information
 
-This demo has been tested on the following operating systems and will work if you have the prerequisites installed.
+This demo has been tested on the following operating systems and will work if you have the prerequisites installed. You may need to build the demo app images yourself if you are on a different platform.
 
 - macOS M2
 
