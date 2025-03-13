@@ -36,12 +36,13 @@ spec:
       containers:
         - name: demo
           image: docker.io/linsun/demo:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 8001
           env:
             - name: OLLAMA_BASE_URL
-              value: "http://ollama.ollama:80"
+              # value: "http://host.docker.internal:11434"
+              value: "http://ollama:80"
             - name: SECRET_OPENAI
               valueFrom:
                 secretKeyRef:

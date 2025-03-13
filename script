@@ -55,3 +55,7 @@ for i in {2..10009}
 do
   k exec -it deploy/client -- curl http://httpbin.org/get -v
 done
+
+kubectl exec -it deploy/client -- curl http://host.docker.internal:11434/api/tags
+
+kubectl exec -it deploy/client -- curl http://ollama.ollama:80/api/tags

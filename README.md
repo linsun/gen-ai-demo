@@ -31,6 +31,7 @@ Pull the two models:
 ```sh
 kubectl exec -it deploy/client -- curl http://ollama.ollama:80/api/pull -d '{"name": "llama3.2"}'
 kubectl exec -it deploy/client -- curl http://ollama.ollama:80/api/pull -d '{"name": "llava"}'
+kubectl exec -it deploy/client -- curl http://ollama.ollama:80/api/pull -d '{"name": "deepseek-r1"}'
 ```
 
 ## Install Istio ambient and enroll all the apps to Istio ambient
