@@ -5,7 +5,7 @@ kind: Kustomization
 # list of Resource Config to be Applied
 resources:
 - rollout.yaml
-- service.yaml
+- deployAndService.yaml
 - analysis.yaml
 - gateway.yaml
 - ns.yaml
