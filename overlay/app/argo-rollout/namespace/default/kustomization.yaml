@@ -4,11 +4,7 @@ kind: Kustomization
 
 # list of Resource Config to be Applied
 resources:
-- rollout.yaml
-- service.yaml
-- analysis.yaml
-- gateway.yaml
-- ns.yaml
+- ../../../../../base/argo-rollout/
 
 transformers:
 - transformers/waypoint-label.yaml
