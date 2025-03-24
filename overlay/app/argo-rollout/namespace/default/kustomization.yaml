@@ -6,5 +6,4 @@ kind: Kustomization
 resources:
 - ../../../../../base/argo-rollout/
 
-transformers:
-- transformers/waypoint-label.yaml
+namespace: default
