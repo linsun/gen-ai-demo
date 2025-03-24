@@ -1,0 +1,21 @@
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: openai
+  namespace: istio-egress
+spec:
+  targetRefs:
+  - kind: ServiceEntry
+    group: networking.istio.io
+    name: host-ollama
+  action: ALLOW
+  rules:
+  # only the default namespace can access it
+  - from:
+    - source:
+        namespaces: ["default"]
+  # Everything else is only allowed to access /GET
+  - to:
+    - operation:
+        methods: ["GET"]
+        paths: ["/"]

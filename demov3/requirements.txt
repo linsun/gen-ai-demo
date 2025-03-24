@@ -1,0 +1,11 @@
+python-dotenv
+streamlit
+ollama
+chromadb>=0.4.22
+langchain>=0.1.0
+langchain-community>=0.0.10
+unstructured
+pypdf
+tiktoken
+reportlab
+

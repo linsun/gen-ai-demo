@@ -5,7 +5,7 @@ st.set_page_config(
     page_icon="👋",
 )
 
-st.write("# Welcome V2! 👋")
+st.write("# Welcome V1! 👋")
 
 st.sidebar.success("Select a demo above.")
 
