@@ -1,41 +1,67 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: demo
+  name: rollouts-demo
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: demo
+  name: rollouts-demo-stable
+  namespace: default
 spec:
-  type: ClusterIP
-  selector:
-    app: demo
   ports:
     - protocol: TCP
       port: 8001
       targetPort: 8001
+  selector:
+    app: rollouts-demo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rollouts-demo-canary
+  namespace: default
+spec:
+  ports:
+    - protocol: TCP
+      port: 8001
+      targetPort: 8001
+  selector:
+    app: rollouts-demo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rollouts-demo
+  namespace: default
+spec:
+  ports:
+    - protocol: TCP
+      port: 8001
+      targetPort: 8001
+  selector:
+    app: rollouts-demo
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: demo
+  name: rollouts-demo
   labels:
-    app: demo
+    app: rollouts-demo
 spec:
   replicas: 1 # Specifies the number of instances
   selector:
     matchLabels:
-      app: demo
+      app: rollouts-demo
   template:
     metadata:
       labels:
-        app: demo
+        app: rollouts-demo
     spec:
-      serviceAccountName: demo
+      serviceAccountName: rollouts-demo
       containers:
-        - name: demo
-          image: docker.io/linsun/demo:v2
+        - name: rollouts-demo
+          image: docker.io/linsun/demo:v1
           imagePullPolicy: Always
           ports:
             - containerPort: 8001

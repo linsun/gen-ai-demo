@@ -1,20 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
-  name: demo
+  name: rollouts-demo
   namespace: default
 spec:
   revisionHistoryLimit: 2
   selector:
     matchLabels:
-      app: demo
+      app: rollouts-demo
   template:
     metadata:
       labels:
-        app: demo
+        app: rollouts-demo
     spec:
       containers:
-      - name: demo
+      - name: rollouts-demo
         image: docker.io/linsun/demo:v1
         imagePullPolicy: Always
         ports:
@@ -23,43 +23,27 @@ spec:
           - name: OLLAMA_BASE_URL
             value: "http://host.docker.internal:11434"
             # value: "http://ollama:80"
-        resources:
-          requests:
-            cpu: "100m"
   strategy:
     canary:
-      canaryService: demo-canary # our created canary service
-      stableService: demo-stable # our created stable service
-      analysis:
-        startingStep: 1   # index of step list, of when to start this analysis
-        templates:
-        - templateName: istio-success-rate
-        args:             # arguments allow AnalysisTemplates to be re-used
-        - name: service
-          value: demo-canary
-        - name: namespace
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
+      canaryService: rollouts-demo-canary # our created canary service
+      stableService: rollouts-demo-stable # our created stable service
       trafficRouting:
         managedRoutes:
         - name: "canary-header"
         plugins:
           argoproj-labs/gatewayAPI:
-            httpRoute: demo-http-route
+            httpRoute: rollouts-demo-http-route
             namespace: default
       steps:
-      - setWeight: 20
+      - setWeight: 30
       - setHeaderRoute:
           name: "canary-header"
           match:
             - headerName: x-rollout-canary
               headerValue:
                 exact: "true" 
-      - pause: {duration: 30s}
-      - setWeight: 40
-      - pause: {duration: 30s}
+      - pause: {}
       - setWeight: 60
       - pause: {duration: 30s}
-      - setWeight: 80
+      - setWeight: 100
       - pause: {duration: 30s}
