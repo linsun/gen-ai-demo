@@ -42,6 +42,8 @@ spec:
             fieldRef:
               fieldPath: metadata.namespace
       trafficRouting:
+        managedRoutes:
+        - name: "canary-header"
         plugins:
           argoproj-labs/gatewayAPI:
             httpRoute: demo-http-route
