@@ -1,0 +1,52 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: demo
+  namespace: default
+spec:
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: demo
+  template:
+    metadata:
+      labels:
+        app: demo
+    spec:
+      containers:
+      - name: demo
+        image: docker.io/linsun/demo:v1
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 8001
+        env:
+          - name: OLLAMA_BASE_URL
+            value: "http://host.docker.internal:11434"
+            # value: "http://ollama:80"
+  strategy:
+    canary:
+      canaryService: demo-canary # our created canary service
+      stableService: demo-stable # our created stable service
+      analysis:
+        startingStep: 2   # index of step list, of when to start this analysis
+        templates:
+        - templateName: istio-success-rate
+        args:             # arguments allow AnalysisTemplates to be re-used
+        - name: service
+          value: demo-canary
+        - name: namespace
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+      trafficRouting:
+        plugins:
+          argoproj-labs/gatewayAPI:
+            httpRoute: demo-http-route
+            namespace: default
+      steps:
+      - setWeight: 30
+      - pause: {}
+      - setWeight: 60
+      - pause: {duration: 30s}
+      - setWeight: 100
+      - pause: {duration: 30s}

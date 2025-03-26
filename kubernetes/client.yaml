@@ -35,7 +35,7 @@ spec:
       serviceAccountName: client
       containers:
       - name: client
-        image: curlimages/curl
+        image: linsun/curl:latest
         command: ["/bin/sleep", "infinity"]
         imagePullPolicy: IfNotPresent
 ---

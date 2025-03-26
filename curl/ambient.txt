@@ -1,0 +1,7 @@
+Introduction
+
+Ambient mesh is a new pattern for managing and securing communication between microservices in a distributed system. It builds on the concepts of a traditional service mesh, but with a simpler, lighter architecture that removes the need for sidecar proxies.
+
+In a traditional service mesh, each microservice typically runs a sidecar — a dedicated proxy that intercepts communication to enforce security policies, control traffic, and provide observability.
+
+By contrast, an ambient mesh operates at the platform layer, without the need for sidecar proxies. Instead, a shared proxy running on each node handles zero-trust security, and optional proxies for each class of workloads provide additional features when required. As a result, an ambient mesh simplifies deployment, reduces resource usage, and lowers the operational burden, providing all the same benefits as a traditional service mesh at a substantially reduced cost.

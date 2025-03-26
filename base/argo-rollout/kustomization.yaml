@@ -4,11 +4,17 @@ kind: Kustomization
 
 # list of Resource Config to be Applied
 resources:
-- rollout.yaml
-- deployAndService.yaml
-- analysis.yaml
-- gateway.yaml
 - ns.yaml
+- demo.yaml
+- rag.yaml
+- analysis.yaml
+- ingress-gateway.yaml
+- ew-gateway.yaml
+- egress-gateway.yaml
+- route.yaml
+- rag.yaml
+- demo-rollout.yaml
+- rag-rollout.yaml
 
 transformers:
 - transformers/waypoint-label.yaml
