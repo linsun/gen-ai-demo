@@ -8,9 +8,7 @@ resources:
 - demo.yaml
 - rag.yaml
 - analysis.yaml
-- ingress-gateway.yaml
 - ew-gateway.yaml
-- egress-gateway.yaml
 - route.yaml
 - rag.yaml
 - demo-rollout.yaml
