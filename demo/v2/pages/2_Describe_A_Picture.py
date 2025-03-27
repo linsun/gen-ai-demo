@@ -3,7 +3,7 @@ import os
 import streamlit as st
 from ollama import Client
 
-ollama_base_url = os.getenv("OLLAMA_BASE_URL")
+OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
 
 def process_stream(stream):
   for chunk in stream:
@@ -35,7 +35,7 @@ if picture:
     f.write(picture.getbuffer())
 
   # Initialize the Ollama client
-  client = Client(host=ollama_base_url)
+  client = Client(host=OLLAMA_BASE_URL)
 
   # Define the path to your image
   image_path = 'snap.jpg'

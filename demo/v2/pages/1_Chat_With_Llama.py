@@ -2,8 +2,7 @@ import os
 import streamlit as st
 from ollama import Client
 
-ollama_base_url = os.getenv("OLLAMA_BASE_URL")
-# ollama_base_url = "http://localhost:11434"
+OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")# ollama_base_url = "http://localhost:11434"
 
 # Streamlit UI
 st.set_page_config(
@@ -35,7 +34,7 @@ if prompt := st.chat_input():
     st.chat_message("user").write(prompt)
 
     # Initialize the Ollama client
-    client = Client(host=ollama_base_url)
+    client = Client(host=OLLAMA_BASE_URL)
     stream = client.chat(model="llama3.2", messages=st.session_state.messages, stream=False,)
     msg = stream['message']['content']
     st.session_state.messages.append({"role": "assistant", "content": msg})

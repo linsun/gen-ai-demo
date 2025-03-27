@@ -13,13 +13,13 @@ done
 
 # trigger the v2 roll out & watch it
 kubectl argo rollouts get rollout demo  -w
-kubectl argo rollouts set image demo demo=docker.io/linsun/demo:v2
+kubectl argo rollouts set image rag rag=docker.io/linsun/rag:v2
 kubectl get httproute -o yaml -w
 
 kubectl argo rollouts promote demo
 
 for i in {1..100}
 do
-  curl -X POST http://rag-service:80/upload -H "Content-Type: multipart/form-data" -F "file=@ambient.txt;type=text/plain"
+  curl -X POST http://rag:80/upload -H "Content-Type: multipart/form-data" -F "file=@ambient.txt;type=text/plain"
   sleep 5
 done

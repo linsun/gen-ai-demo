@@ -13,10 +13,7 @@ spec:
         type: PathPrefix
         value: /
     backendRefs:
-    - name: demo-stable
-      kind: Service
-      port: 80
-    - name: demo-canary
+    - name: demo
       kind: Service
       port: 80
 ---

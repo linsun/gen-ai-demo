@@ -2,12 +2,12 @@ import streamlit as st
 import requests
 import json
 import mimetypes
+import os
 
 st.set_page_config(page_title="RAG Demo", page_icon="🔍")
 st.write("# RAG Demo 🔍")
 
-# Constants
-RAG_SERVICE_URL = "http://rag-service:80"
+RAG_SERVICE_URL = os.getenv("RAG_SERVICE_URL", "http://rag:80")
 
 # File uploader
 uploaded_file = st.file_uploader("Upload a document", type=['pdf', 'txt'], help="Supported formats: PDF, TXT")
