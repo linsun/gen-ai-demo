@@ -18,10 +18,18 @@ kubectl get httproute -o yaml -w
 
 kubectl argo rollouts promote demo
 
-curl -X POST http://rag:80/upload -H "Content-Type: multipart/form-data" -F "file=@ambient.txt;type=text/plain" -H "x-rollout-canary:true"
+k exec -it deploy/client -- curl -X POST http://rag:80/upload -H "Content-Type: multipart/form-data" -F "file=@ambient.txt;type=text/plain" -H "x-rollout-canary:true"
 
-for i in {1..100}
+
+
+for i in {1..5}
 do
-  curl -X POST http://rag:80/upload -H "Content-Type: multipart/form-data" -F "file=@ambient.txt;type=text/plain"
-  sleep 5
+  k exec -it deploy/client -- curl -X POST http://rag:80/upload -H "Content-Type: multipart/form-data" -F "file=@ambient.txt;type=text/plain" -H "x-rollout-canary:true" \n
+  sleep 2
+done
+
+for i in {1..500}
+do
+  k exec -it deploy/client -- curl -X POST http://rag:80/query -H "Content-Type: application/json" -d '{"question": "What is the content of the document in 20 words?"}' -H "x-rollout-canary:true"
+  sleep 2
 done
