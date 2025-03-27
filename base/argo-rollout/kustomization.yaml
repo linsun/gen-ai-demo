@@ -8,7 +8,7 @@ resources:
 # - demo.yaml
 - rag.yaml
 - analysis.yaml
-- ew-gateway.yaml
+# - ew-gateway.yaml
 - route.yaml
 # - rag.yaml
 #- demo-rollout.yaml
