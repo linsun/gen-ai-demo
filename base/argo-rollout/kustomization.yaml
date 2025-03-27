@@ -4,15 +4,15 @@ kind: Kustomization
 
 # list of Resource Config to be Applied
 resources:
-- ns.yaml
-- demo.yaml
+# - ns.yaml
+# - demo.yaml
 - rag.yaml
 - analysis.yaml
 - ew-gateway.yaml
 - route.yaml
 # - rag.yaml
-- demo-rollout.yaml
-# - rag-rollout.yaml
+#- demo-rollout.yaml
+- rag-rollout.yaml
 
-transformers:
-- transformers/waypoint-label.yaml
+# transformers:
+# - transformers/waypoint-label.yaml

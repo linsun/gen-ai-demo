@@ -1,28 +1,6 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: demo-http-route
-  namespace: default
-spec:
-  parentRefs:
-  - name: ingress-gateway
-    namespace: istio-system
-  rules:
-  - matches:
-    - path:
-        type: PathPrefix
-        value: /
-    backendRefs:
-    - name: demo-stable
-      kind: Service
-      port: 80
-    - name: demo-canary
-      kind: Service
-      port: 80
----
-apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
-metadata:
   name: rag-http-route
   namespace: default
 spec:
