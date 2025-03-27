@@ -1,0 +1,25 @@
+# deploy the argo application
+kubectl apply -f argo/app/argo-rollout/namespace/default/demo-rollout.yaml
+
+kubectl port-forward svc/argocd-server -n argocd 9999:443
+
+
+for i in {1..1000}
+do
+  k exec -it deploy/client -- curl http://ingress-gateway-istio.istio-system:80/ -v
+  sleep 5
+done
+
+
+# trigger the v2 roll out & watch it
+kubectl argo rollouts get rollout demo  -w
+kubectl argo rollouts set image demo demo=docker.io/linsun/demo:v2
+kubectl get httproute -o yaml -w
+
+kubectl argo rollouts promote demo
+
+for i in {1..100}
+do
+  curl -X POST http://rag-service:80/upload -H "Content-Type: multipart/form-data" -F "file=@ambient.txt;type=text/plain"
+  sleep 5
+done
