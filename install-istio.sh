@@ -17,13 +17,15 @@ kubectl apply -f $ISTIO_DOWNLOAD_DIR/samples/addons/kiali.yaml
 # kubectl apply -f $ISTIO_DOWNLOAD_DIR/samples/addons/grafana.yaml
 
 kubectl label ns default istio.io/dataplane-mode=ambient
+istioctl waypoint apply --enroll-namespace --namespace default --overwrite
+
 kubectl apply -f policy/ingress-gateway.yaml
 kubectl apply -f policy/demo-route.yaml
-istioctl waypoint apply --enroll-namespace --namespace default --overwrite
+# istioctl waypoint apply --enroll-namespace --namespace default --overwrite
 
 kubectl create ns istio-egress
 kubectl label ns istio-egress istio.io/dataplane-mode=ambient
 istioctl waypoint apply --enroll-namespace --namespace istio-egress --overwrite
-kubectl apply -f policy/se-host-ollama.yaml
+kubectl apply -f policy/se-ollama.yaml
 
 # kubectl label ns default istio.io/dataplane-mode=ambient

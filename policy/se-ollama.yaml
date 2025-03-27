@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1
 kind: ServiceEntry
 metadata:
-  name: host-ollama
+  name: external-ollama
   namespace: istio-egress
 spec:
   hosts:

@@ -14,5 +14,3 @@ resources:
 #- demo-rollout.yaml
 - rag-rollout.yaml
 
-transformers:
-- transformers/waypoint-label.yaml
