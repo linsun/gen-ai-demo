@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
-  name: rag-service
+  name: rag
   namespace: default
 spec:
   revisionHistoryLimit: 2
@@ -11,7 +11,7 @@ spec:
   template:
     metadata:
       labels:
-        app: rag-service
+        app: rag
     spec:
       containers:
       - name: rag
@@ -37,8 +37,8 @@ spec:
             cpu: "2"
   strategy:
     canary:
-      canaryService: rag-service-canary # our created canary service
-      stableService: rag-service-stable # our created stable service
+      canaryService: rag-canary # our created canary service
+      stableService: rag-stable # our created stable service
       analysis:
         startingStep: 2   # index of step list, of when to start this analysis
         templates:

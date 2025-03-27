@@ -6,20 +6,20 @@ metadata:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rag-service
+  name: rag
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: rag-service
+      app: rag
   template:
     metadata:
       labels:
-        app: rag-service
+        app: rag
     spec:
       serviceAccountName: rag
       containers:
-      - name: rag-service
+      - name: rag
         image: linsun/rag:v1  # You'll need to build and push this image to your registry
         imagePullPolicy: Always
         ports:
@@ -45,10 +45,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: rag-service
+  name: rag
 spec:
   selector:
-    app: rag-service
+    app: rag
   ports:
   - port: 80
     targetPort: 8000
@@ -56,10 +56,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: rag-service-stable
+  name: rag-stable
 spec:
   selector:
-    app: rag-service
+    app: rag
   ports:
   - port: 80
     targetPort: 8000
@@ -67,10 +67,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: rag-service-canary
+  name: rag-canary
 spec:
   selector:
-    app: rag-service
+    app: rag
   ports:
   - port: 80
     targetPort: 8000
