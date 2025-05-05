@@ -19,6 +19,9 @@ This script will:
 ```sh
 ./startup.sh
 ```
+Install [ollama](https://ollama.com/) on your local machine. Ollama is a Language Model as a Service (LMaaS) that provides a RESTful API for interacting with large language models. It's a great way to get started with LLMs without having to worry about the infrastructure.
+
+
 
 ## Pull the LLM models
 
@@ -26,12 +29,11 @@ The following two LLM models are used in the demo:
 - LLaVa (Large Language and Vision Assistant)
 - Llama (Large Language Model Meta AI) 3.2
 
-Pull the two models:
+Pull the two models using the ollama cli:
 
 ```sh
-kubectl exec -it deploy/client -- curl http://ollama.ollama:80/api/pull -d '{"name": "llama3.2"}'
-kubectl exec -it deploy/client -- curl http://ollama.ollama:80/api/pull -d '{"name": "llava"}'
-kubectl exec -it deploy/client -- curl http://ollama.ollama:80/api/pull -d '{"name": "deepseek-r1"}'
+ollama pull llama3.2
+ollama pull llava
 ```
 
 ## Install Istio ambient and enroll all the apps to Istio ambient
