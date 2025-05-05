@@ -44,15 +44,21 @@ We use [Istio](https://istio.io) to secure, observe and control the traffic amon
 ./install-istio.sh
 ```
 
-## Access the demo app
-
-Use port-forwarding to help us access the demo app:
+## Deploy all Istio policies
 
 ```sh
-kubectl port-forward svc/demo 8001:8001
+kubectl apply -f policy/
 ```
 
-To access the demo app, open your browser and navigate to [http://localhost:8001](http://localhost:8001)
+## Access the demo app
+
+Use port-forwarding to help us access the demo app via Istio ingress gateway:
+
+```sh
+kubectl port-forward svc/istio-ingressgateway -n istio-system 8080:80
+```
+
+To access the demo app, open your browser and navigate to [http://localhost:8080](http://localhost:8080)
 
 ## Cleanup
 
