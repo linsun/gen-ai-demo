@@ -30,6 +30,8 @@ echo "Applying the Kubernets manifests..."
 
 
 kubectl apply -f kubernetes/client.yaml
+kubectl apply -f kubernetes/demo.yaml
+kubectl apply -f kubernetes/rag.yaml
 # Replace below with your own secret file
 # kubectl apply -f ../openai-secret.yaml
 
