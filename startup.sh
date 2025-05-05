@@ -28,12 +28,14 @@ kind load docker-image docker.io/istio/pilot:1.25.0-distroless
 
 echo "Applying the Kubernets manifests..."
 
-# kubectl apply -f kubernetes/ollama.yaml
+
 kubectl apply -f kubernetes/client.yaml
 # Replace below with your own secret file
 # kubectl apply -f ../openai-secret.yaml
 
-sleep 10
+# if you need ollama running in k8s, uncomment below.
+# kubectl apply -f kubernetes/ollama.yaml
+# sleep 10
 # pull the 2 models
 # kubectl exec -it deploy/client -- curl http://ollama.ollama:11434/api/pull -d '{"name": "llama3.2"}'
 # kubectl exec -it deploy/client -- curl http://ollama.ollama:11434/api/pull -d '{"name": "llava"}'
