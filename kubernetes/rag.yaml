@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rag-service
+  name: rag
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: rag-service
+      app: rag
   template:
     metadata:
       labels:
-        app: rag-service
+        app: rag
     spec:
       containers:
-      - name: rag-service
+      - name: ra
         image: linsun/rag:latest  # You'll need to build and push this image to your registry
         imagePullPolicy: Always
         ports:
@@ -22,12 +22,6 @@ spec:
           - name: OLLAMA_BASE_URL
             value: "http://host.docker.internal:11434"
             # value: "http://ollama:80"
-          - name: PYTHONUNBUFFERED
-            value: "1"
-          - name: CHROMA_SERVER_AUTH_CREDENTIALS
-            value: "none"
-          - name: CHROMA_SERVER_AUTH_PROVIDER
-            value: "none"
         resources:
           requests:
             memory: "2Gi"
@@ -39,10 +33,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: rag-service
+  name: rag
 spec:
   selector:
-    app: rag-service
+    app: rag
   ports:
   - port: 80
     targetPort: 8000
