@@ -30,12 +30,6 @@ spec:
           - name: OLLAMA_BASE_URL
             value: "http://host.docker.internal:11434"
             # value: "http://ollama:80"
-          - name: PYTHONUNBUFFERED
-            value: "1"
-          - name: CHROMA_SERVER_AUTH_CREDENTIALS
-            value: "none"
-          - name: CHROMA_SERVER_AUTH_PROVIDER
-            value: "none"
         resources:
           requests:
             memory: "2Gi"
@@ -70,13 +64,6 @@ spec:
         env:
           - name: OLLAMA_BASE_URL
             value: "http://host.docker.internal:11434"
-            # value: "http://ollama:80"
-          - name: PYTHONUNBUFFERED
-            value: "1"
-          - name: CHROMA_SERVER_AUTH_CREDENTIALS
-            value: "none"
-          - name: CHROMA_SERVER_AUTH_PROVIDER
-            value: "none"
         resources:
           requests:
             memory: "2Gi"
