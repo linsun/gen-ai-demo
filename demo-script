@@ -5,18 +5,18 @@ do
 done
 
 
-k exec -it deploy/client -- curl -X POST http://rag:80/upload -H "Content-Type: multipart/form-data" -F "file=@ambient.txt;type=text/plain" -H "x-rollout-canary:true"
+k exec -it deploy/client -- curl -X POST http://rag:80/upload -H "Content-Type: multipart/form-data" -F "file=@ambient.txt;type=text/plain" -H "canary:true"
 
 
 
 for i in {1..5}
 do
-  k exec -it deploy/client -- curl -X POST http://rag:80/upload -H "Content-Type: multipart/form-data" -F "file=@ambient.txt;type=text/plain" -H "x-rollout-canary:true" \n
+  k exec -it deploy/client -- curl -X POST http://rag:80/upload -H "Content-Type: multipart/form-data" -F "file=@ambient.txt;type=text/plain" -H "canary:true" \n
   sleep 2
 done
 
 for i in {1..500}
 do
-  k exec -it deploy/client -- curl -X POST http://rag:80/query -H "Content-Type: application/json" -d '{"question": "What is the content of the document in 20 words?"}' -H "x-rollout-canary:true"
+  k exec -it deploy/client -- curl -X POST http://rag:80/query -H "Content-Type: application/json" -d '{"question": "What is the content of the document in 20 words?"}' -H "canary:true"
   sleep 2
 done
