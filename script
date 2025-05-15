@@ -68,6 +68,8 @@ do
   sleep 5
 done
 
+k exec -it deploy/client -- curl  -X POST http://rag-service:80/upload -H "Content-Type: multipart/form-data" -F "file=@ambient.txt;type=text/plain"
+
 kubectl exec -it deploy/client -- curl http://host.docker.internal:11434/api/tags
 
 kubectl exec -it deploy/client -- curl http://ollama.ollama:80/api/tags
