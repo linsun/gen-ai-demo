@@ -18,11 +18,11 @@ spec:
     - name: rag-v1
       kind: Service
       port: 80
-      weight: 70
+      weight: 0
     - name: rag-v2
       kind: Service
       port: 80
-      weight: 30
+      weight: 100
   - matches:
     - headers:
       - name: canary
