@@ -1,0 +1,13 @@
+apiVersion: networking.istio.io/v1
+kind: ServiceEntry
+metadata:
+  name: external-ollama
+  namespace: istio-egress
+spec:
+  hosts:
+  - host.docker.internal
+  ports:
+  - number: 11434
+    name: http
+    protocol: HTTP
+  resolution: DNS
