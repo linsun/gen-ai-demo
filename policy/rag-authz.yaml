@@ -1,0 +1,16 @@
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: rag-authz
+  namespace: default
+spec:
+  targetRefs:
+  - kind: Service
+    group: ""
+    name: rag
+  action: ALLOW
+  rules:
+  - to:
+    - operation:
+        methods: ["POST","GET"]
+        paths: ["/query"]
