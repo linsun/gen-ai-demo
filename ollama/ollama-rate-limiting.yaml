@@ -13,4 +13,4 @@ spec:
       tokenBucket:
         maxTokens: 3
         tokensPerFill: 3
-        fillInterval: 60s
+        fillInterval: 180s
