@@ -8,7 +8,6 @@ spec:
   - group: ""
     kind: Service
     name: rag
-    port: 80
   rules:
   - matches:
     - path:
