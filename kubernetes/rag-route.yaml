@@ -23,11 +23,3 @@ spec:
       kind: Service
       port: 80
       weight: 100
-  - matches:
-    - headers:
-      - name: canary
-        value: "true"
-    backendRefs:
-    - name: rag-v2
-      kind: Service
-      port: 80
