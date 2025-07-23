@@ -1,18 +1,23 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: rag
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rag-v2
+  name: rag-v1
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: rag
-      version: v2
+      version: v1
   template:
     metadata:
       labels:
         app: rag
-        version: v2
+        version: v1
     spec:
       serviceAccountName: rag
       containers:
@@ -47,11 +52,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: rag-v2
+  name: rag-v1
 spec:
   selector:
     app: rag
-    version: v2
+    version: v1
   ports:
   - port: 80
     targetPort: 8000
