@@ -15,10 +15,8 @@ spec:
         value: /
     backendRefs:
     - name: rag-v1
-      kind: Service
       port: 80
       weight: 0
     - name: rag-v2
-      kind: Service
       port: 80
       weight: 100
