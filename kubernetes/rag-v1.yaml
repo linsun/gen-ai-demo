@@ -28,8 +28,8 @@ spec:
         - containerPort: 8000
         env:
           - name: OLLAMA_BASE_URL
-            # value: "http://host.docker.internal:11434"
-            value: "http://ollama.ollama:80"
+            value: "http://host.docker.internal:11434"
+            # value: "http://ollama.ollama:80"
         resources:
           requests:
             memory: "2Gi"
@@ -60,3 +60,4 @@ spec:
   ports:
   - port: 80
     targetPort: 8000
+    name: http
