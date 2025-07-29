@@ -22,7 +22,7 @@ spec:
       serviceAccountName: rag
       containers:
       - name: rag
-        image: linsun/rag:v2  # You'll need to build and push this image to your registry
+        image: linsun/rag:v1  # You'll need to build and push this image to your registry
         imagePullPolicy: Always
         ports:
         - containerPort: 8000
