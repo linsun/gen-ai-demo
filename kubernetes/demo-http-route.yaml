@@ -11,8 +11,8 @@ spec:
   - matches:
     - path:
         type: PathPrefix
-        value: /
+        value: "/"
     backendRefs:
     - name: demo
       kind: Service
-      port: 8080
+      port: 80
