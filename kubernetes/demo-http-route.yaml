@@ -6,7 +6,8 @@ metadata:
 spec:
   parentRefs:
   - name: ingress-gateway
-    namespace: istio-system
+    # namespace: istio-system
+    namespace: kgateway-system
   rules:
   - matches:
     - path:
