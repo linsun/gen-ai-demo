@@ -14,3 +14,14 @@ spec:
     allowedRoutes:
       namespaces:
         from: All
+---
+apiVersion: gateway.kgateway.dev/v1alpha1
+kind: GatewayParameters
+metadata:
+  name: agentwaypoint
+spec:
+  kube:
+    agentGateway:
+      image:
+        registry: ttl.sh/1755188752
+        tag: "24h"
