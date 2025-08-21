@@ -1,21 +1,32 @@
-FROM python:3
+# Use Python 3.11 slim image for smaller size
+FROM python:3.11-slim
 
 WORKDIR /app
 
+# Install only essential system dependencies
 RUN apt-get update && apt-get install -y \
-  build-essential \
   curl \
-  software-properties-common \
   && rm -rf /var/lib/apt/lists/*
 
+# Create non-root user for security
+RUN useradd --create-home --shell /bin/bash app \
+  && chown -R app:app /app
+USER app
+
+# Copy and install Python dependencies
 COPY requirements.txt .
+RUN pip install --user --upgrade -r requirements.txt
 
-RUN pip install --upgrade -r requirements.txt
+# Add user's pip install location to PATH
+ENV PATH="/home/app/.local/bin:${PATH}"
 
-COPY . .
+# Copy application files
+COPY --chown=app:app . .
 
 EXPOSE 8001
 
+# Healthcheck using curl
 HEALTHCHECK CMD curl --fail http://localhost:8001/_stcore/health
 
+# Run as non-root user
 ENTRYPOINT ["streamlit", "run", "Hello.py", "--server.port=8001", "--server.address=0.0.0.0"]
