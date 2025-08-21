@@ -19,16 +19,4 @@ spec:
     allowedRoutes:
       namespaces:
         from: All
----
-apiVersion: gateway.kgateway.dev/v1alpha1
-kind: GatewayParameters
-metadata:
-  name: agentgateway
-  namespace: kgateway-system
-spec:
-  kube:
-    agentGateway:
-      ca: https://istiod.istio-system.svc:15012
-      image:
-        registry: ttl.sh/1755188752
-        tag: "24h"
+
