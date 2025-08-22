@@ -41,6 +41,8 @@ def create_autoplay_audio(audio_bytes):
   """
   return audio_html
 
+
+
 # Streamlit UI
 st.set_page_config(
     page_title="Analyze a Image Mood with LLaVa 📸",
@@ -89,15 +91,26 @@ if picture:
   with st.spinner('Analyzing the image...'):
     response_text = collect_stream_text(stream)
   
-  # Display the response
+  # Display the full response
   # st.write("**Analysis Result:**")
   st.write("Hello! " + response_text)
+
+  # Generate a 5-word summary
+  with st.spinner('Creating summary...'):
+    summary_message = {
+        'role': 'user',
+        'content': f'Summarize this mood analysis in exactly 5 words: {response_text}',
+    }
+    summary_stream = client.chat(model="llava", messages=[summary_message], stream=True)
+    summary_text = collect_stream_text(summary_stream)
   
-  # Convert to speech and auto-play audio
-  if response_text:
-    with st.spinner('Generating speech...'):
+
+  # Convert to speech and auto-play audio using summary
+  if summary_text:
+    with st.spinner('Generating voice...'):
       try:
-        audio_bytes = text_to_speech(response_text)
+        # Generate main audio
+        audio_bytes = text_to_speech(summary_text + " This is cool!")
         if audio_bytes:
           # st.write("🔊 **Listen to the analysis (auto-playing):**")
           # Create and display auto-playing audio
