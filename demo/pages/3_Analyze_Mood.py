@@ -5,7 +5,8 @@ import streamlit as st
 from ollama import Client
 from gtts import gTTS
 
-OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
+# OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
+OLLAMA_BASE_URL = os.getenv("LLAVA_BASE_URL", "http://localhost:11434")
 
 def process_stream(stream):
   for chunk in stream:
