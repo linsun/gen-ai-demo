@@ -41,14 +41,11 @@ spec:
             - containerPort: 8001
           env:
             - name: OLLAMA_BASE_URL
-              # value: "http://host.docker.internal:3000"
-              value: "http://host.docker.internal:11434"
+              value: "http://host.docker.internal:3000"
+              # value: "http://host.docker.internal:11434"
               # value: "http://ollama.ollama:80"
-            # - name: SECRET_OPENAI
-              # valueFrom:
-              #   secretKeyRef:
-              #     name: openai
-              #     key: key
+            - name: LLAVA_BASE_URL
+              value: "http://host.docker.internal:11434"
   strategy:
     type: RollingUpdate
     rollingUpdate:
