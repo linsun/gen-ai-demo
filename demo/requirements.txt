@@ -3,3 +3,5 @@ ollama
 openai
 gtts
 requests
+speechrecognition
+pydub
