@@ -3,9 +3,11 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Install only essential system dependencies
+# Install system dependencies including FFmpeg and FLAC for audio processing
 RUN apt-get update && apt-get install -y \
   curl \
+  ffmpeg \
+  flac \
   && rm -rf /var/lib/apt/lists/*
 
 # Create non-root user for security
