@@ -14,7 +14,7 @@ do
 done
 
 kubectl port-forward -n ollama service/ollama 11434:80
-kubectl port-forward service/demo 8501:8501
+kubectl port-forward service/demo 8001:8001
 
 ollama pull llama3.2
 ollama pull llava
