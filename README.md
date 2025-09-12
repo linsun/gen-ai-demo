@@ -52,6 +52,13 @@ kubectl port-forward svc/demo 8001:8001
 
 To access the demo app, open your browser and navigate to [http://localhost:8001](http://localhost:8001)
 
+## Google Slides Integration 📊
+
+Voice-activated presentation creation! Say "Create slides for Tokyo" in the Voice with Llama app.
+
+- Configure your MCP server URL: `export MCP_SERVER_URL="http://agentgw.mcp.svc.cluster.local:3000/mcp"`
+- See [GOOGLE_SLIDES_SETUP.md](GOOGLE_SLIDES_SETUP.md) for setup details
+
 ## Cleanup
 
 To clean up the demo, run the following command:
