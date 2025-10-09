@@ -7,11 +7,11 @@ metadata:
 spec:
   # gatewayClassName: istio
   gatewayClassName: agentgateway
-  infrastructure:
-    parametersRef:
-      group: gateway.kgateway.dev
-      kind: GatewayParameters
-      name: agentgateway
+  # infrastructure:
+  #   parametersRef:
+  #     group: gateway.kgateway.dev
+  #     kind: GatewayParameters
+  #     name: agentgateway
   listeners:
   - name: http
     port: 80
