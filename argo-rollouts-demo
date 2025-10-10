@@ -22,9 +22,10 @@ k exec -it deploy/client -- curl -X POST http://rag:80/upload -H "Content-Type: 
 
 
 
-for i in {1..5}
+for i in {1..100}
 do
-  k exec -it deploy/client -- curl -X POST http://rag:80/upload -H "Content-Type: multipart/form-data" -F "file=@ambient.txt;type=text/plain" -H "x-rollout-canary:true" \n
+  kubectl exec -it deploy/client -- curl -X POST http://rag:80/upload -H "Content-Type: multipart/form-data" -F "file=@ambient.txt;type=text/plain"
+  echo "\n"
   sleep 2
 done
 
