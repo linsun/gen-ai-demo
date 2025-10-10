@@ -5,8 +5,10 @@ metadata:
   namespace: default
 spec:
   parentRefs:
-  - name: agentgateway
-    namespace: kgateway-system
+  - name: istio-ingress
+    namespace: istio-system  
+  # - name: agentgateway
+  #  namespace: kgateway-system
   rules:
   - matches:
     - path:
@@ -15,4 +17,4 @@ spec:
     backendRefs:
     - name: demo
       kind: Service
-      port: 88
+      port: 80

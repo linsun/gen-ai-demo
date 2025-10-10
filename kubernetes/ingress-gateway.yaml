@@ -1,17 +1,13 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: agentgateway
-  # namespace: istio-system
-  namespace: kgateway-system
+  name: istio-ingress
+  namespace: istio-system
+  # name: agentgateway
+  # namespace: kgateway-system
 spec:
-  # gatewayClassName: istio
-  gatewayClassName: agentgateway
-  # infrastructure:
-  #   parametersRef:
-  #     group: gateway.kgateway.dev
-  #     kind: GatewayParameters
-  #     name: agentgateway
+  gatewayClassName: istio
+  # gatewayClassName: agentgateway
   listeners:
   - name: http
     port: 80
