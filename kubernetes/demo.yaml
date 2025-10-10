@@ -35,7 +35,7 @@ spec:
       serviceAccountName: demo
       containers:
         - name: demo
-          image: docker.io/linsun/demo:v2
+          image: docker.io/linsun/demo:v3
           imagePullPolicy: Always
           ports:
             - containerPort: 8001
