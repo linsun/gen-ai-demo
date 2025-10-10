@@ -18,8 +18,8 @@ spec:
     - name: rag-v1
       kind: Service
       port: 80
-      weight: 100
+      weight: 50
     - name: rag-v2
       kind: Service
       port: 80
-      weight: 0
+      weight: 50
