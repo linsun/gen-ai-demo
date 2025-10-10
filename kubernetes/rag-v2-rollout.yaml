@@ -7,11 +7,13 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: rag-v2
+      app: rag
+      version: v2
   template:
     metadata:
       labels:
-        app: rag-v2
+        app: rag
+        version: v2
     spec:
       containers:
       - name: rag-v2
