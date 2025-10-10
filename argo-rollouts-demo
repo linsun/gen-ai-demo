@@ -12,11 +12,11 @@ done
 
 
 # trigger the v2 roll out & watch it
-kubectl argo rollouts get rollout rag  -w
 kubectl argo rollouts set image rag rag=docker.io/linsun/rag:v2
 kubectl get httproute -o yaml -w
 
-kubectl argo rollouts promote demo
+kubectl argo rollouts get rollout rag-v2 -w
+kubectl argo rollouts promote rag-v2
 
 k exec -it deploy/client -- curl -X POST http://rag:80/upload -H "Content-Type: multipart/form-data" -F "file=@ambient.txt;type=text/plain" -H "x-rollout-canary:true"
 
