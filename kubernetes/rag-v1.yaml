@@ -61,3 +61,16 @@ spec:
   - port: 80
     targetPort: 8000
     name: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rag-v2
+spec:
+  selector:
+    app: rag
+    version: v2
+  ports:
+  - port: 80
+    targetPort: 8000
+    name: http
