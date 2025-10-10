@@ -14,7 +14,7 @@ spec:
     - path:
         type: Prefix
         value: /
-    backednRef:
+    backendRefs:
     - name: rag-v2
       kind: Service
       port: 80
