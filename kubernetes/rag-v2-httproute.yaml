@@ -14,7 +14,8 @@ spec:
     - path:
         type: Prefix
         value: /
-    forwardTo:
-    - serviceName: rag-v2
+    backednRef:
+    - name: rag-v2
+      kind: Service
       port: 80
       weight: 100
