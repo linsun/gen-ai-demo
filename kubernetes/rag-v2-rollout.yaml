@@ -4,7 +4,7 @@ metadata:
   name: rag-v2
   namespace: default
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: rag
@@ -35,8 +35,8 @@ spec:
   strategy:
     canary:
       steps:
-      - setWeight: 25
+      - setWeight: 33
       - pause: {duration: 10s}
-      - setWeight: 50
-      - pause: {duration: 10s}
+      - setWeight: 66
+      - pause: {}
       - setWeight: 100
