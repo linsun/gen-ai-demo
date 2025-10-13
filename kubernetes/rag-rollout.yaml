@@ -1,0 +1,53 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: rag-rollout
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rag
+      version: v2 # New version label for the rollout
+  workloadRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: rag-v1
+    scaleDown: onsuccess
+  template:
+    metadata:
+      labels:
+        app: rag
+        version: v2 # New version label for the rollout
+    spec:
+      serviceAccountName: rag
+      containers:
+      - env:
+        - name: OLLAMA_BASE_URL
+          value: http://host.docker.internal:11434
+        image: docker.io/linsun/rag:v2 # New image
+        imagePullPolicy: Always
+        name: rag
+        ports:
+        - containerPort: 8000
+          protocol: TCP
+        resources:
+          limits:
+            cpu: "2"
+            memory: 4Gi
+          requests:
+            cpu: "1"
+            memory: 2Gi
+  strategy:
+    canary:
+      steps:
+      - setWeight: 20
+      - pause: {duration: 1m}
+      - setWeight: 40
+      - pause: {duration: 1m}
+      - setWeight: 60
+      - pause: {duration: 1m}
+      - setWeight: 80
+      - pause: {duration: 1m}
+      - setWeight: 100
+      - pause: {}
