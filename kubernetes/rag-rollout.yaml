@@ -9,11 +9,6 @@ spec:
     matchLabels:
       app: rag
       version: v2 # New version label for the rollout
-  workloadRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: rag-v1
-    scaleDown: onsuccess
   template:
     metadata:
       labels:
@@ -41,13 +36,9 @@ spec:
   strategy:
     canary:
       steps:
-      - setWeight: 20
-      - pause: {duration: 1m}
-      - setWeight: 40
-      - pause: {duration: 1m}
-      - setWeight: 60
-      - pause: {duration: 1m}
-      - setWeight: 80
-      - pause: {duration: 1m}
+      - setWeight: 33
+      - pause: {duration: 10s}
+      - setWeight: 66
+      - pause: {duration: 10s}
       - setWeight: 100
       - pause: {}
