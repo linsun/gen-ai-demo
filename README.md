@@ -59,6 +59,45 @@ Voice-activated presentation creation! Say "Create slides for Tokyo" in the Voic
 - Configure your MCP server URL: `export MCP_SERVER_URL="http://agentgw.mcp.svc.cluster.local:3000/mcp"`
 - See [GOOGLE_SLIDES_SETUP.md](GOOGLE_SLIDES_SETUP.md) for setup details
 
+## Engagement Analysis GitHub Integration 📸
+
+The Engagement Analysis app automatically stores analysis results and images to GitHub using the GitHub MCP server.
+
+### Quick Setup
+```bash
+export EVENT_NAME="your-event-name"
+export GITHUB_MCP_SERVER_URL="http://your-github-mcp-server:port/mcp"
+export GITHUB_REPO="gen-ai-demo"
+```
+
+### Features
+- 📷 **Dual Camera Analysis** - Compare engagement levels between two images
+- 🤖 **AI-Powered Analysis** - Uses LLaVa for detailed engagement assessment  
+- 🌿 **Auto Branch Creation** - Creates event-specific GitHub branches
+- 📁 **Organized Storage** - Stores in `events/{EVENT_NAME}/` folder structure
+- 📄 **Complete Reports** - Generates markdown analysis reports
+- 🔗 **Direct Links** - Provides immediate GitHub links to results
+
+See [ENGAGEMENT_ANALYSIS_GITHUB_SETUP.md](ENGAGEMENT_ANALYSIS_GITHUB_SETUP.md) for complete setup instructions.
+
+### Kubernetes Deployment with GitHub Integration
+
+For production Kubernetes deployments with secure GitHub token management:
+
+```bash
+# 1. Create GitHub secret (replace with your token)
+kubectl create secret generic github-secret \
+  --from-literal=token="ghp_your_github_token_here"
+
+# 2. Deploy application with GitHub integration  
+kubectl apply -f kubernetes/demo.yaml
+
+# 3. Verify deployment
+kubectl logs -l app=demo | grep -i github
+```
+
+See [KUBERNETES_GITHUB_SETUP.md](KUBERNETES_GITHUB_SETUP.md) for detailed Kubernetes setup with security best practices.
+
 ## Cleanup
 
 To clean up the demo, run the following command:

@@ -1,1 +1,0 @@
-# apidays Paris 2025

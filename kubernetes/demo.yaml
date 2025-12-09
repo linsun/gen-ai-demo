@@ -16,6 +16,9 @@ spec:
       port: 80
       targetPort: 8001
 ---
+# NOTE: This deployment requires the 'github-secret' to be created first
+# See KUBERNETES_GITHUB_SETUP.md for complete setup instructions
+# Quick setup: kubectl create secret generic github-secret --from-literal=token="ghp_your_token_here"
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -35,17 +38,30 @@ spec:
       serviceAccountName: demo
       containers:
         - name: demo
-          image: docker.io/linsun/demo:v3
+          image: docker.io/linsun/demo:v4
           imagePullPolicy: Always
           ports:
             - containerPort: 8001
           env:
             - name: OLLAMA_BASE_URL
-              value: "http://host.docker.internal:3000"
-              #value: "http://host.docker.internal:11434"
+              #value: "http://host.docker.internal:3000"
+              value: "http://host.docker.internal:11434"
               # value: "http://ollama.ollama:80"
             - name: LLAVA_BASE_URL
               value: "http://host.docker.internal:11434"
+            # GitHub Integration Configuration
+            - name: GITHUB_MCP_SERVER_URL
+              value: "http://agentgateway.mcp.svc.cluster.local:3000/mcp"
+            - name: EVENT_NAME
+              value: "apidays-paris-2025"
+            - name: GITHUB_REPO
+              value: "gen-ai-demo"
+            # GitHub Token from Kubernetes Secret (for binary image conversion)
+            - name: GITHUB_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: github-secret
+                  key: token
   strategy:
     type: RollingUpdate
     rollingUpdate:
