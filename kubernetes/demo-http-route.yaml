@@ -6,7 +6,7 @@ metadata:
 spec:
   parentRefs:
   - name: istio-ingress
-    namespace: istio-system  
+    namespace: istio-system
   # - name: agentgateway
   #  namespace: kgateway-system
   rules:
@@ -17,4 +17,4 @@ spec:
     backendRefs:
     - name: demo
       kind: Service
-      port: 88
+      port: 80
