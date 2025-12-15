@@ -21,36 +21,6 @@ kubectl get secrets github-secret
 kubectl describe secret github-secret
 ```
 
-### Method 2: Using YAML manifest
-
-```bash
-# 1. Edit kubernetes/github-secret.yaml
-# Replace 'your-base64-encoded-token-here' with your base64 encoded token
-
-# Encode your token:
-echo -n "ghp_your_actual_token_here" | base64
-
-# 2. Apply the secret
-kubectl apply -f kubernetes/github-secret.yaml
-
-# 3. Verify the secret
-kubectl get secrets github-secret
-```
-
-### Method 3: Using stringData (Easiest)
-
-Edit `kubernetes/github-secret.yaml` and use the `stringData` section:
-
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: github-secret
-type: Opaque
-stringData:
-  token: "ghp_your_actual_token_here"  # Plain text - Kubernetes encodes automatically
-```
-
 ## 🚀 Deployment
 
 ### 1. Deploy the Application
@@ -173,13 +143,6 @@ kubectl exec -it deployment/demo -- curl -s http://agentgateway.mcp.svc.cluster.
 ```bash
 # Method 1: Update existing secret
 kubectl patch secret github-secret -p='{"data":{"token":"'$(echo -n "ghp_new_token_here" | base64)'"}}'
-
-# Method 2: Delete and recreate
-kubectl delete secret github-secret
-kubectl create secret generic github-secret --from-literal=token="ghp_new_token_here"
-
-# Method 3: Apply updated YAML
-kubectl apply -f kubernetes/github-secret.yaml
 ```
 
 ### Update Application
