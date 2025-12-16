@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: demo
+  namespace: default
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - istio-system/istio-ingress
+  http:
+  - match:
+    - uri:
+        prefix: "/"
+    route:
+    - destination:
+        host: demo
+        port:
+          number: 80
