@@ -7,13 +7,11 @@ spec:
   parentRefs:
   - name: istio-ingress
     namespace: istio-system
-  # - name: agentgateway
-  #  namespace: kgateway-system
   rules:
   - matches:
     - path:
         type: PathPrefix
-        value: /
+        value: "/"
     backendRefs:
     - name: demo
       kind: Service
