@@ -23,8 +23,6 @@ spec:
   parentRefs:
     - name: agentgateway
       namespace: default
-  hostnames:
-    - "agentgateway-proxy.default.svc.cluster.local"
   rules:
     - matches:
         - path:
