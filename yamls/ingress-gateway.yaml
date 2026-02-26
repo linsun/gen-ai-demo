@@ -1,7 +1,7 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: agentgateway
+  name: agentgateway-proxy
   namespace: default
 spec:
   gatewayClassName: agentgateway
@@ -13,21 +13,3 @@ spec:
       namespaces:
         from: All
 
----
-apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
-metadata:
-  name: agentgateway-proxy-to-demo
-  namespace: default
-spec:
-  parentRefs:
-    - name: agentgateway
-      namespace: default
-  rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: /
-      backendRefs:
-        - name: demo
-          port: 80
