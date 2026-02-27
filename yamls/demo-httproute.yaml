@@ -10,4 +10,4 @@ spec:
   rules:
   - backendRefs:
     - name: demo
-      port: 8001
+      port: 80
