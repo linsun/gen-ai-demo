@@ -7,8 +7,6 @@ spec:
   parentRefs:
     - name: agentgateway-proxy
       namespace: default
-  hostnames:
-    - "demo.example.com"
   rules:
     - matches:
         - path:
