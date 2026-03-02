@@ -49,7 +49,7 @@ spec:
               value: "http://host.docker.internal:11434"
             # GitHub Integration Configuration
             - name: GITHUB_MCP_SERVER_URL
-              value: "http://agentgateway.mcp.svc.cluster.local:3000/mcp/github"
+              value: "http://agentgateway.mcp.svc.cluster.local:3000/mcp"
             - name: EVENT_NAME
               value: "OpenGateway-DevCon-2026"
             - name: GITHUB_REPO
