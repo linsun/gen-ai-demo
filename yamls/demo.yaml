@@ -51,7 +51,7 @@ spec:
             - name: GITHUB_MCP_SERVER_URL
               value: "http://agentgateway.mcp.svc.cluster.local:3000/mcp"
             - name: EVENT_NAME
-              value: "OpenGateway-DevCon-2026"
+              value: "OpenGatewaySummit-2026"
             - name: GITHUB_REPO
               value: "gen-ai-demo"
             # GitHub Token from Kubernetes Secret (for binary image conversion)
